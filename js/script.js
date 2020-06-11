@@ -14,7 +14,7 @@ function playGame(playerInput){
       return 'nożyce';
     } else {
       printMessage('Nie znam ruchu o id ' + argMoveId + '.');
-      return 'kamień';
+      throw newError ('zły ruch');
     }
   }
 
@@ -56,11 +56,11 @@ function playGame(playerInput){
 
   function displayResult(argPlayerMove, argComputerMove){
     console.log('moves:', argComputerMove, argPlayerMove);
-    if (argPlayerMove == 'papier' && argComputerMove == 'kamień'){
-      printMessage('Wygrałeś!');
-    } else if (argPlayerMove == 'kamień' && argComputerMove == 'nożyce'){
-      printMessage('Wygrałeś!');
-    } else if (argPlayerMove == 'nożyce' && argComputerMove == 'papier'){
+    if (
+        (argPlayerMove == 'papier' && argComputerMove == 'kamień') ||
+        (argPlayerMove == 'kamień' && argComputerMove == 'nożyce') ||
+        (argPlayerMove == 'nożyce' && argComputerMove == 'papier')
+      ){
       printMessage('Wygrałeś!');
     } else if (argPlayerMove == argComputerMove && argComputerMove == argPlayerMove){
       printMessage('Remis!');
